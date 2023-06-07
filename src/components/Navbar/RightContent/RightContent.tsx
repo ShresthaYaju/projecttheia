@@ -1,4 +1,5 @@
 import React from 'react';
+import AuthButtons from './AuthButtons';
 
 type RightContentProps = {
     // user:
@@ -6,6 +7,13 @@ type RightContentProps = {
 
 const RightContent:React.FC<RightContentProps> = () => {
     
-    return <div>Have a good coding</div>
+    return (
+        <>
+        {/* <AuthModal /> */}
+        <div className='flex justify-center items-center'>
+            <AuthButtons />
+        </div>
+        </>
+    )
 }
 export default RightContent;

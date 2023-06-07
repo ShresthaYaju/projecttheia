@@ -12,3 +12,10 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+@layer components{
+  .btn{
+    @apply rounded-[60px] px-3;
+  }
+
+}
