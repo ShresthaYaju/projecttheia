@@ -1,10 +1,12 @@
-import Navbar from '@/components/Navbar/Navbar'
+
 import './globals.css'
 import { Open_Sans } from 'next/font/google'
 
+
+
 const open_sans  = Open_Sans({ 
   subsets: ['latin'],
-  weight: "400",
+  weight: ["400", "700", "800"],
   variable: '--font-OpenSans',
 })
 
@@ -20,7 +22,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${open_sans.className} bg-background text-slate-100 font-sans`}>{children}</body>
+
+      <body className={`${open_sans.className} bg-background text-slate-100 font-sans`}>
+
+        {children}
+        </body>
     </html>
   )
 }
