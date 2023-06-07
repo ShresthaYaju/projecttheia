@@ -1,6 +1,7 @@
 
 import './globals.css'
 import { Open_Sans } from 'next/font/google'
+import RecoilRootWrapper from '@/components/Wrapper/RecoilRootWrapper'
 
 
 
@@ -24,8 +25,9 @@ export default function RootLayout({
     <html lang="en">
 
       <body className={`${open_sans.className} bg-background text-slate-100 font-sans`}>
-
+        <RecoilRootWrapper>
         {children}
+        </RecoilRootWrapper>
         </body>
     </html>
   )
