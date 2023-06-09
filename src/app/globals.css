@@ -15,7 +15,7 @@ body {
 
 @layer components{
   .btn-solid {
-    @apply rounded-[60px] px-3 font-medium focus:shadow-none sm:text-xs md:text-base text-slate-100 bg-[#5296dd] hover:bg-[#92bddf] mx-2 font-semibold;
+    @apply rounded-[60px] px-3 font-medium focus:shadow-none  sm:text-xs md:text-base text-slate-100 bg-[#5296dd] hover:bg-[#92bddf] mx-2 font-semibold;
   }
   
   .btn-outline{
