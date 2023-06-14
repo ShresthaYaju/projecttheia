@@ -49,7 +49,7 @@ const AuthModal: React.FC = () => {
             {modalState.view === "resetPassword" && "Reset Password"}
           </span>
           <button
-            className="btn-outline text-slate-400  border-0 right-2 top-3 absolute"
+            className="btn-outline text-slate-500  border-0 right-2 top-3 absolute"
             onClick={handleClose}
           >
             <RxCross2 />
