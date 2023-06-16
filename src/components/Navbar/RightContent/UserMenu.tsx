@@ -32,7 +32,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
           <div className="flex">
             <div className=" group flex items-center">
               <FaUserAstronaut className="h-5 w-5 group-hover:text-[#5296dd]  text-primary" />
-              <p className="hidden md:inline-block text-primary mx-1 text-sm group-hover:text-[#5296dd]">
+              <p className="hidden md:inline-block text-primary mx-1 md:mx-2  text-sm group-hover:text-[#5296dd]">
                 {user.displayName
                   ? user.displayName
                   : user.email?.split("@")[0]}

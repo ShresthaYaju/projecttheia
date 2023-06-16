@@ -13,10 +13,12 @@ const Navbar:React.FC = () => {
     const [user, loading, error] = useAuthState(auth);
     
     return (
-        <div className='flex h-14 py-[6px] px-3 border-b-[1px]  border-primary/40 items-center'>
+        <div className='flex h-14 py-[6px] md:justify-between px-3 border-b-[1px]  border-primary/40 items-center'>
+            <div className='flex items-center'>
             <p className='text-3xl font-bold font-sans flex-shrink-0 mr-2'>THEIA</p>
-            <Directory/>
-            <SearchInput />
+           {user && < Directory/>}
+            </div>
+            <SearchInput user={user} />
             <RightContent user={user}/>
 
         </div>
