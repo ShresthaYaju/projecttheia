@@ -29,7 +29,7 @@ const Icons: React.FC = () => {
       <div className="flex mx-[1px] p-1 cursor-pointer ">
           <IoNotificationsOutline className="text-xl text-primary/80 hover:text-[#5296dd] transition-all duration-300 ease-in-out" />
         </div>
-      <div className="hidden md:flex mx-[1px] p-1 cursor-pointer ">
+      <div className=" md:flex mx-[1px] p-1 cursor-pointer ">
           <IoAddOutline className="text-2xl text-primary/80 hover:text-[#5296dd] transition-all duration-300 ease-in-out" />
         </div>
 

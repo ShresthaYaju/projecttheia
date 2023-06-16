@@ -13,7 +13,7 @@ const SearchInput: React.FC<SearchInputProps> = () => {
       <input
         type="text"
         placeholder="Search"
-        className="flex-1 bg-inherit focus:outline-none text-m .placeholder-primary/60 "
+        className="flex-1 bg-inherit focus:outline-none  .placeholder-primary/60 "
       />
       <button type="submit" hidden></button>
 
