@@ -17,7 +17,7 @@ const OAuthButtons: React.FC = () => {
   return (
     <div>
       <button
-        className="btn-oauth w-full mb-2  object-contain  h-7 text-xs flex flex-1 px-7 justify-center items-center"
+        className="btn-oauth w-full mb-2  object-contain h-10 md:h-7 text-xs flex flex-1 px-7 justify-center items-center"
         onClick={() => {
           SignInWithGoogle();
         }}
@@ -60,7 +60,7 @@ const OAuthButtons: React.FC = () => {
 
 
      <button
-        className="btn-oauth w-full mb-2  object-contain  h-7 text-xs flex flex-1 px-7 justify-center items-center"
+        className="btn-oauth w-full mb-2  object-contain  h-10 md:h-7 text-xs flex flex-1 px-7 justify-center items-center"
         onClick={() => {
           SignInWithGithub();
         }}

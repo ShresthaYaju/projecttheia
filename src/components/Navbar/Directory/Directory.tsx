@@ -4,7 +4,7 @@ import { TiHome } from "react-icons/ti";
 
 const UserMenu: React.FC = () => {
   return (
-    <div className="flex flex-col justify-between ml-1 pl-1  relative">
+    <div className="flex flex-col justify-between ml-0 md:ml-1 pl-1  relative">
       <button
         id="dropdownDefaultButton"
         data-dropdown-toggle="dropdownDirectory"
@@ -20,7 +20,7 @@ const UserMenu: React.FC = () => {
           <p className="hidden group-hover:text-[#5296dd]  md:inline-block text-primary ml-1">
             Home
           </p>
-          <AiFillCaretDown className="h-3 mx-1 md:mx-2 w-3 group-hover:text-[#5296dd]  text-primary" />
+          <AiFillCaretDown className="h-3 mx-1 hidden md:inline-block md:mx-2 w-3 group-hover:text-[#5296dd]  text-primary" />
         </div>
       </button>
 
