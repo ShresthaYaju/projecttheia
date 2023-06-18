@@ -31,7 +31,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
         {user ? (
           <div className="flex">
             <div className=" group flex items-center">
-              <FaUserAstronaut className="h-5 w-5 group-hover:text-[#5296dd]  text-primary" />
+              <FaUserAstronaut className="h-5 w-5  group-hover:text-[#5296dd]  text-primary" />
               <p className="hidden md:inline-block text-primary mx-1 md:mx-2  text-sm group-hover:text-[#5296dd]">
                 {user.displayName
                   ? user.displayName
@@ -44,7 +44,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
           <div className="flex">
             <div className=" group flex items-center">
               <VscAccount className="h-5 w-5 group-hover:text-[#5296dd]  text-primary" />
-              <AiFillCaretDown className="h-3 w-3 group-hover:text-[#5296dd]  text-primary" />
+              <AiFillCaretDown className="h-3 w-3 ml-1 group-hover:text-[#5296dd]  text-primary" />
             </div>
           </div>
         )}
@@ -58,50 +58,38 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
               className="z-10  hidden right-0 absolute top-[49px] bg-white divide-y divide-gray-100 rounded-b-lg shadow  dark:bg-gray-700"
             >
               <ul
-                className="py-2  text-sm text-gray-700 dark:text-gray-200"
+                className="py-2 text-xs  md:text-sm text-gray-700 dark:text-gray-200"
                 aria-labelledby="dropdownDefaultButton"
               >
                 <li>
-                  <a
-                    href="#"
-                    className="block px-2 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >
+                  <div className="block px-2 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     <div className="group flex justify-center items-center">
                       <CgProfile className="group-hover:text-[#5296dd] h-4 w-4 mr-1" />
                       <p className="group-hover:text-[#5296dd]">Profile</p>
                     </div>
-                  </a>
+                  </div>
                 </li>
                 <li
                   onClick={() => {
                     signOut(auth);
                   }}
                 >
-                  <a
-                    href="#"
-                    className="block px-2 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >
+                  <div className="block px-2 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     <div className="group flex justify-center items-center">
                       <MdLogin className="group-hover:text-[#5296dd] h-4 w-4 mr-1" />
                       <p className="group-hover:text-[#5296dd]">Log Out</p>
                     </div>
-                  </a>
+                  </div>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >
+                  <div className="block px-4 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     Earnings
-                  </a>
+                  </div>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >
+                  <div className="block px-4 py-2 cursor-pointer rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     Sign out
-                  </a>
+                  </div>
                 </li>
               </ul>
             </div>

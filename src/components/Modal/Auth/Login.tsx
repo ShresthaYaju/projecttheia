@@ -93,7 +93,9 @@ const Login: React.FC<LoginProps> = () => {
             onClick={() => {
               setAuthModalState((prev) => ({ ...prev, view: "resetPassword" }));
             }}
-            >Reset</p>
+          >
+            Reset
+          </p>
         </div>
 
         <div className="flex text-[9pt] justify-center mt-2">

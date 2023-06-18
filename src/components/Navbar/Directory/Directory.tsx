@@ -1,6 +1,7 @@
 import React from "react";
 import { AiFillCaretDown } from "react-icons/ai";
 import { TiHome } from "react-icons/ti";
+import Communities from "./Communities";
 
 const UserMenu: React.FC = () => {
   return (
@@ -20,32 +21,20 @@ const UserMenu: React.FC = () => {
           <p className="hidden group-hover:text-[#5296dd]  md:inline-block text-primary ml-1">
             Home
           </p>
-          <AiFillCaretDown className="h-3 mx-1 hidden md:inline-block md:mx-2 w-3 group-hover:text-[#5296dd]  text-primary" />
+          <AiFillCaretDown className="h-3 mx-1 inline-block mr-1 md:mx-2 w-3 group-hover:text-[#5296dd]  text-primary" />
         </div>
       </button>
 
       <div className="flex">
         <div
           id="dropdownDirectory"
-          className="z-10  hidden right-0 absolute top-[49px] bg-white divide-y divide-gray-100 rounded-b-lg shadow  dark:bg-gray-700"
+          className="z-10  hidden md:right-0 absolute top-[49px] bg-white divide-y divide-gray-100 rounded-b-lg shadow  dark:bg-gray-700"
         >
           <ul
-            className="py-2  text-sm text-gray-700 dark:text-gray-200"
+            className="py-2  w-36 md:w-40 text-xs md:text-sm text-gray-700 dark:text-gray-200"
             aria-labelledby="dropdownDefaultButton"
           >
-            <li>
-              <a
-                href="#"
-                className="block px-2 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >
-                <div className="group flex justify-center items-center">
-
-                  <p className="group-hover:text-[#5296dd]">
-                    {/* {<Communities />} */}
-                  </p>
-                </div>
-              </a>
-            </li>
+            <Communities />
           </ul>
         </div>
       </div>

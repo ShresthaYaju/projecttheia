@@ -24,7 +24,6 @@ const AuthModal: React.FC = () => {
   const handleClose = () => {
     setModalState((prev) => ({ ...prev, open: false }));
     dialogRef.current?.close();
-    console.log("user", user);
   };
 
   useEffect(() => {
@@ -52,7 +51,7 @@ const AuthModal: React.FC = () => {
             className="btn-outline text-slate-500  border-0 right-2 top-3 absolute"
             onClick={handleClose}
           >
-            <RxCross2 />
+            <RxCross2 className="text-lg md:text-xl" />
           </button>
         </div>
 
