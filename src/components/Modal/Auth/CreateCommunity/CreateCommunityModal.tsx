@@ -3,9 +3,10 @@ import React, { useRef, useState } from "react";
 import { BsFillEyeFill, BsFillPersonFill } from "react-icons/bs";
 import { RxCross2 } from "react-icons/rx";
 import { HiLockClosed } from "react-icons/hi";
-import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
+import { doc, getDoc, runTransaction, serverTimestamp, setDoc } from "firebase/firestore";
 import { auth, firestore } from "@/firebase/clientApp";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { Type } from "typescript";
 
 type CreateCommunityModalProps = {
   open: boolean;
@@ -17,6 +18,8 @@ const CreateCommunityModal: React.FC<CreateCommunityModalProps> = ({
   handleCloseModal,
 }) => {
   const [communityName, setCommunityName] = useState("");
+  const communityDescription =useRef<any>(null)
+  const charDescription = useRef(100);
   const [charRemaining, setCharRemaining] = useState(20);
   const [communityType, setCommunityType] = useState("Public");
   const [error, setError] = useState("");
@@ -24,9 +27,18 @@ const CreateCommunityModal: React.FC<CreateCommunityModalProps> = ({
   const [user ] = useAuthState(auth);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.value.length > 20) return;
+    if (event.target.value.length > 20 && event.target.name==="text") return;
+    if (charDescription.current== 0 && event.target.name==="description") return;
+
+    if(event.target.name==="description"){
+    charDescription.current=100-event.target.value.length;
+      return;
+    }
+    if(event.target.name==="text"){
     setCommunityName(event.target.value);
     setCharRemaining(20 - event.target.value.length);
+    return;
+    }
   };
 
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -46,8 +58,9 @@ const CreateCommunityModal: React.FC<CreateCommunityModalProps> = ({
   }
 
 
-  const createCommunity = async (event: React.FormEvent<HTMLFormElement> ) => {
+  const createCommunity = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent> ) => {
     event.preventDefault();
+
   
     if(error) setError("");
 
@@ -63,18 +76,32 @@ const CreateCommunityModal: React.FC<CreateCommunityModalProps> = ({
       
     const communityDocRef= doc(firestore, "communities", communityName);
 
-    const communityDoc = await getDoc(communityDocRef);
+    await runTransaction(firestore, async (transaction) => {
+      const communityDoc = await transaction.get(communityDocRef);
+
 
     if(communityDoc.exists()){
       throw new Error("Community name already exists");
     }
 
-    await setDoc(communityDocRef, {
+    
+    // creates community
+
+    transaction.set(communityDocRef, {
       creatorId:user?.uid,
       createdAt: serverTimestamp(),
       numberOfMembers: 1,
       privacyType: communityType,
-  
+      communityDescription: communityDescription.current?.value,
+    })
+
+    // creates community snippet for user
+
+    transaction.set(doc(firestore,`users/${user?.uid}/communitySnippets`,communityName), {
+      communityID: communityName,
+      isModerator: true,
+    })
+
   })
       
     } catch (error:any) {
@@ -127,7 +154,25 @@ const CreateCommunityModal: React.FC<CreateCommunityModalProps> = ({
               </p>
               <p className="text-xs text-red-600">{error}</p>
             </div>
+
+            <div className="flex flex-col i justify-center ">
+              <p className="text-base font-bold">Description</p>
+              <input
+                required
+                type="textarea"
+                maxLength={100}
+                name="description"
+                placeholder="What is your community about? "
+                ref={communityDescription}
+                onChange={onChange}
+                className="mb-2 w-full text-sm border-primary/50 border-[1px] rounded-xl py-1 px-2  hover:border-[#5296dd] focus:outline-none focus:border-[#5296dd]"
+              />
+            
+              <p className="text-xs text-red-600">{error}</p>
+            </div>
           </div>
+
+          
 
           <div className="mb-2">
             <p className="text-base font-bold">Community Type</p>
@@ -191,7 +236,7 @@ const CreateCommunityModal: React.FC<CreateCommunityModalProps> = ({
             </button>
             <button
               className="btn-solid h-7  flex w-auto justify-center items-center"
-              // type="submit"
+              type="submit"
               onClick={createCommunity}
             >
               {loading ? (
