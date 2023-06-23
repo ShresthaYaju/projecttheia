@@ -155,7 +155,7 @@ const CreateCommunityModal: React.FC<CreateCommunityModalProps> = ({
               <p className="text-xs text-red-600">{error}</p>
             </div>
 
-            <div className="flex flex-col i justify-center ">
+            <div className="flex  w-10 /12 flex-col i justify-center ">
               <p className="text-base font-bold">Description</p>
               <input
                 required

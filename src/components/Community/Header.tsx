@@ -7,6 +7,8 @@ type HeaderProps = {
 };
 
 const Header: React.FC<HeaderProps> = ({ communityData }) => {
+
+  let isJoined= true;
   return (
     <div className="flex flex-col w-full h-36 ">
       <div className="h-1/2 bg-blue" />
@@ -21,11 +23,12 @@ const Header: React.FC<HeaderProps> = ({ communityData }) => {
               size={60}
             />
           )}
-          <div className="flex p-2 ">
-            <div className="flex flex-col">
-              <p className="text-xl font-bold">{communityData.id}</p>
-                <p className="text-xs text-primary">{communityData.communityDescription}</p>
+          <div className="flex p-2  ">
+            <div className="flex flex-col w-full">
+              <p className="text-xl flex justify-between font-bold">{communityData.id}  <button className={`btn-${ isJoined?"outline": "solid"}  text-sm`} >{isJoined? "Joined": "Join" }</button></p>
+              <p className="text-xs mt-1 text-primary">{communityData.communityDescription}</p>
             </div>
+             
           </div>
         </div>
       </div>
