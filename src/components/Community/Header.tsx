@@ -25,7 +25,7 @@ const Header: React.FC<HeaderProps> = ({ communityData }) => {
           )}
           <div className="flex p-2  ">
             <div className="flex flex-col w-full">
-              <p className="text-xl flex justify-between font-bold">{communityData.id}  <button className={`btn-${ isJoined?"outline": "solid"}  text-sm`} >{isJoined? "Joined": "Join" }</button></p>
+              <p className="text-xl flex gap-1 font-bold">{communityData.id}  <button className={`btn-${ isJoined?"outline": "solid"}  text-sm`} >{isJoined? "Joined": "Join" }</button></p>
               <p className="text-xs mt-1 text-primary">{communityData.communityDescription}</p>
             </div>
              
