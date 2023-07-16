@@ -36,7 +36,7 @@ const AuthModal: React.FC = () => {
   }
 
   return (
-    <>
+    <div>
       <dialog
         ref={dialogRef}
         className="rounded-lg p-2  bg-slate-100 text-black  w-4/5 sm:w-2/3 md:w-2/5 lg:w-2/6 xl:w-[28%]"
@@ -70,7 +70,7 @@ const AuthModal: React.FC = () => {
           </div>
         </div>
       </dialog>
-    </>
+    </div>
   );
 };
 export default AuthModal;

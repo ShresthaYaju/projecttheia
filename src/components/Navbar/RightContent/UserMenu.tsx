@@ -1,5 +1,6 @@
+
 import { User, signOut } from "firebase/auth";
-import React from "react";
+import React, { useEffect } from "react";
 import { AiFillCaretDown } from "react-icons/ai";
 import { FaUserAstronaut } from "react-icons/fa";
 import { VscAccount } from "react-icons/vsc";
@@ -15,8 +16,24 @@ type UserMenuProps = {
 
 const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
   const setAuthModalState = useSetRecoilState(authModalState);
+  const [userExists, setUserExists] = React.useState(false);
+  const [displayName, setDisplayName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [mounted , setMounted] = React.useState(false);
 
-  return (
+  useEffect(() => {
+    if (user) {
+      setUserExists(true);
+      setDisplayName(user?.displayName ? user?.displayName : "");
+      setEmail(user?.email ? user?.email : "");
+    }
+    setMounted(true);
+  }, []);
+
+
+  
+
+  return mounted && (
     <div className="flex flex-col ml-1 pl-1  relative">
       <button
         id="dropdownDefaultButton"
@@ -28,15 +45,15 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
         }}
         type="button"
       >
-        {user ? (
+        {userExists ? (
           <div className="flex">
             <div className=" group flex items-center">
               <FaUserAstronaut className="h-5 w-5  group-hover:text-[#5296dd]  text-primary" />
-              <p className="hidden md:inline-block text-primary mx-1 md:mx-2  text-sm group-hover:text-[#5296dd]">
-                {user.displayName
-                  ? user.displayName
-                  : user.email?.split("@")[0]}
-              </p>
+              <div className="hidden md:flex items-center gap-1 text-primary mx-1 md:mx-2  text-sm group-hover:text-[#5296dd]">
+                {displayName
+                  ? displayName
+                  : email?.split("@")[0]}
+              </div>
               <AiFillCaretDown className="h-3 w-3 group-hover:text-[#5296dd]  text-primary" />
             </div>
           </div>
@@ -50,8 +67,8 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
         )}
       </button>
 
-      {user ? (
-        <>
+      {userExists ? (
+        <div>
           <div className="flex">
             <div
               id="dropdown"
@@ -65,7 +82,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
                   <div className="block px-2 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     <div className="group flex justify-center items-center">
                       <CgProfile className="group-hover:text-[#5296dd] h-4 w-4 mr-1" />
-                      <p className="group-hover:text-[#5296dd]">Profile</p>
+                      <div className="group-hover:text-[#5296dd]">Profile</div>
                     </div>
                   </div>
                 </li>
@@ -77,7 +94,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
                   <div className="block px-2 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     <div className="group flex justify-center items-center">
                       <MdLogin className="group-hover:text-[#5296dd] h-4 w-4 mr-1" />
-                      <p className="group-hover:text-[#5296dd]">Log Out</p>
+                      <div className="group-hover:text-[#5296dd]">Log Out</div>
                     </div>
                   </div>
                 </li>
@@ -94,7 +111,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
               </ul>
             </div>
           </div>
-        </>
+        </div>
       ) : (
         <div
           id="dropdown"
@@ -116,7 +133,9 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
               >
                 <div className="group flex justify-center items-center">
                   <CgProfile className="group-hover:text-[#5296dd] h-4 w-4 mr-1" />
-                  <p className="group-hover:text-[#5296dd]">Login / SignUp</p>
+                  <div className="group-hover:text-[#5296dd]">
+                    Login / SignUp
+                  </div>
                 </div>
               </a>
             </li>
@@ -126,4 +145,5 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
     </div>
   );
 };
+
 export default UserMenu;
