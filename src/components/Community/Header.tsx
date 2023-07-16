@@ -1,21 +1,19 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from "react";
 import { Community } from "@/atoms/communitiesAtom";
 import { FaUserAstronaut } from "react-icons/fa";
 import useCommunityData from "@/app/Hooks/useCommunityData";
-
-
 
 type HeaderProps = {
   communityData: Community;
 };
 
 const Header: React.FC<HeaderProps> = ({ communityData }) => {
-  
-  const { communityStateValue, onJoinOrLeaveCommunity } = useCommunityData()
+  const { communityStateValue, onJoinOrLeaveCommunity, loading } =
+    useCommunityData();
 
   let isJoined = !!communityStateValue.communitySnippets.find(
-    (item) => item.communityId === item.communityId
+    (item) => item.communityId === communityData.id
   );
 
   return (
@@ -55,4 +53,4 @@ const Header: React.FC<HeaderProps> = ({ communityData }) => {
     </div>
   );
 };
-export default Header
+export default Header;

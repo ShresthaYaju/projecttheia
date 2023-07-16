@@ -7,8 +7,10 @@ import { VscAccount } from "react-icons/vsc";
 import { CgProfile } from "react-icons/cg";
 import { MdLogin } from "react-icons/md";
 import { auth } from "@/firebase/clientApp";
-import { useSetRecoilState } from "recoil";
+import { useResetRecoilState, useSetRecoilState } from "recoil";
 import { authModalState } from "@/atoms/authModalAtom";
+import { communityState } from "@/atoms/communitiesAtom";
+import { log } from "console";
 
 type UserMenuProps = {
   user?: User | null;
@@ -21,15 +23,26 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
   const [email, setEmail] = React.useState("");
   const [mounted , setMounted] = React.useState(false);
 
+  const resetCommunityState = useResetRecoilState(communityState);
+
+  const logout = async () => {
+    await signOut(auth);
+    resetCommunityState();
+  };
+
   useEffect(() => {
     if (user) {
       setUserExists(true);
       setDisplayName(user?.displayName ? user?.displayName : "");
       setEmail(user?.email ? user?.email : "");
     }
-    setMounted(true);
-  }, []);
+   
+  }, [user]);
 
+  useEffect(() => {
+    setMounted(true);
+  }
+  ,[])
 
   
 
@@ -50,9 +63,9 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
             <div className=" group flex items-center">
               <FaUserAstronaut className="h-5 w-5  group-hover:text-[#5296dd]  text-primary" />
               <div className="hidden md:flex items-center gap-1 text-primary mx-1 md:mx-2  text-sm group-hover:text-[#5296dd]">
-                {displayName
-                  ? displayName
-                  : email?.split("@")[0]}
+                {user?.displayName
+                  ? user?.displayName
+                  : user?.email?.split("@")[0]}
               </div>
               <AiFillCaretDown className="h-3 w-3 group-hover:text-[#5296dd]  text-primary" />
             </div>
@@ -87,9 +100,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
                   </div>
                 </li>
                 <li
-                  onClick={() => {
-                    signOut(auth);
-                  }}
+                  onClick={logout}
                 >
                   <div className="block px-2 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     <div className="group flex justify-center items-center">

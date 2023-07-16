@@ -12,7 +12,7 @@ export interface Community {
     communityDescription?:string;
 }
 
-interface communitySnippet {
+export interface communitySnippet {
     communityId:string;
     isModerator?:boolean;
     imageURL?:string;
@@ -23,6 +23,7 @@ interface CommunityState {
 }
 
 const defaultCommunityState:CommunityState = {
+    //mySnippets:[],
     communitySnippets:[]
 }
 
