@@ -23,6 +23,8 @@ module.exports = {
         background: "#1E1E1E",
         primary: "#8899ac",
         blue:"#5296dd",
+        darkGray:"#313335",
+        mediumGray:"#4a4a4a",
       },
     },
   },

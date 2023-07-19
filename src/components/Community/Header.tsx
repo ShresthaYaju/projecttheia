@@ -17,7 +17,7 @@ const Header: React.FC<HeaderProps> = ({ communityData }) => {
   );
 
   return (
-    <div className="flex flex-col w-full h-36 ">
+    <div className="flex flex-col w-full h-36  ">
       <div className="h-1/2 bg-blue" />
 
       <div className="flex justify-center">
