@@ -11,7 +11,7 @@ export type Post={
     body: string,
     numberOfComments?: number,
     voteStatus?: number,
-    imageURL?: string,
+    imageUrl?: string,
     communityImageURL?: string,
     createdAt: Timestamp
 

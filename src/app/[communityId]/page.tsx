@@ -52,7 +52,7 @@ export default async function CommunityPage({ params }: CommunityPageProps) {
 
      
 
-      <PageContent gridLayout={true}>
+      <PageContent >
         {communityData && <CreatePostLink params={params} />}
         {communityData && 
         <>

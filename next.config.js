@@ -6,6 +6,7 @@ const nextConfig = {
       "localhost",
       "encrypted-tbn0.gstatic.com",
       "natureconservancy-h.assetsadobe.com",
+      "firebasestorage.googleapis.com",
     ],
   },
  

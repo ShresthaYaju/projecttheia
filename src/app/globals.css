@@ -25,4 +25,10 @@ body {
   .btn-oauth{
     @apply rounded-[60px] px-3 font-medium focus:shadow-none sm:text-xs md:text-base h-9  border border-primary/40  hover:bg-slate-200 mx-2 font-semibold;
   }
+
+ 
 }
+
+
+
+
